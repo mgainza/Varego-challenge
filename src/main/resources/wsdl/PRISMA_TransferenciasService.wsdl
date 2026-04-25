@@ -1,0 +1,887 @@
+<?xml version="1.0" ?>
+<wsdl:definitions name="TransferenciasV2Service" targetNamespace="http://ws.transferencias.banelco.com/"
+  xmlns:ns1="http://schemas.xmlsoap.org/soap/http"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:tns="http://ws.transferencias.banelco.com/"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://ws.transferencias.banelco.com/"
+      xmlns:tns="http://ws.transferencias.banelco.com/"
+      xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="usuarioDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="nroDocumento" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="password" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="tipoDocumento" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="terminalDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="canal" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="datosTerminal" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="direccionIp" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="transferenciaDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cbuEnAgenda" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="codConcepto" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="coordenadas" type="tns:coordenadasDTO"></xs:element>
+          <xs:element minOccurs="0" name="cuentaDestino" type="tns:cuentaDTO"></xs:element>
+          <xs:element minOccurs="0" name="cuentaOrigen" type="tns:cuentaDTO"></xs:element>
+          <xs:element minOccurs="0" name="documento" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="importe" type="xs:double"></xs:element>
+          <xs:element minOccurs="0" name="moneda" type="tns:monedaDTO"></xs:element>
+          <xs:element minOccurs="0" name="propiedad" type="tns:propiedadDTO"></xs:element>
+          <xs:element minOccurs="0" name="referencia" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="titularidad" type="tns:titularidadDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="coordenadasDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="coordenada1" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="coordenada2" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="hash" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="nroSerie" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="cuentaDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="descripcion" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="disponible" type="xs:double"></xs:element>
+          <xs:element minOccurs="0" name="limite" type="xs:double"></xs:element>
+          <xs:element minOccurs="0" name="moneda" type="tns:monedaDTO"></xs:element>
+          <xs:element minOccurs="0" name="numero" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="numeroCBU" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="saldo" type="xs:double"></xs:element>
+          <xs:element minOccurs="0" name="tipo" type="tns:tipoCuentaDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="monedaDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:baseDTO">
+            <xs:sequence></xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="baseDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="codigo" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="descripcion" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="tipoCuentaDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:baseDTO">
+            <xs:sequence></xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="propiedadDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:baseDTO">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="ctaCorriente" type="xs:boolean"></xs:element>
+              <xs:element minOccurs="0" name="propia" type="xs:boolean"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="titularidadDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ctaDestino" type="tns:cuentaDTO"></xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="cuits" nillable="true" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="fiidBanco" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="fiidOrigenLink" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="nombreBanco" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="nombreTitular" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ticketDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="bancoDestino" type="tns:bancoDTO"></xs:element>
+          <xs:element minOccurs="0" name="concepto" type="tns:conceptoDTO"></xs:element>
+          <xs:element minOccurs="0" name="cuentaDestino" type="tns:cuentaDTO"></xs:element>
+          <xs:element minOccurs="0" name="cuentaOrigen" type="tns:cuentaDTO"></xs:element>
+          <xs:element minOccurs="0" name="fecha" type="xs:dateTime"></xs:element>
+          <xs:element minOccurs="0" name="hostOnline" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="importe" type="xs:double"></xs:element>
+          <xs:element minOccurs="0" name="moneda" type="tns:monedaDTO"></xs:element>
+          <xs:element minOccurs="0" name="nroControl" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="nroTransaccion" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="referencia" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="bancoDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:baseDTO">
+            <xs:sequence></xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="conceptoDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:baseDTO">
+            <xs:sequence></xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="titularidadExtendidoDTO">
+        <xs:complexContent>
+          <xs:extension base="tns:titularidadDTO">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="alias" type="xs:string"></xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="agendaCBUDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cuitCuil" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="descripcion" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="nroCBU" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="propiedadDTO" type="tns:propiedadDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="agendaCBUAliasDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="alias" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="cuitCuil" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="descripcion" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="propiedadDTO" type="tns:propiedadDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="cbuAliasDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="alias" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="nroCBU" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="datosOriginanteDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="nroDocumento" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="razonSocial" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="tipoDocumento" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="agendaCBUExtendidoDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="alias" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="cuitCuil" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="descripcion" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="nroCBU" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="propiedadDTO" type="tns:propiedadDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="datosUsuarioDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="primerLogin" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="requiereCambioPIN" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="requierePIN" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="requiereTC" type="xs:boolean"></xs:element>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="transferirConCuenta" type="tns:transferirConCuenta"></xs:element>
+      <xs:complexType name="transferirConCuenta">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="transferencia" type="tns:transferenciaDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="transferirConCuentaResponse" type="tns:transferirConCuentaResponse"></xs:element>
+      <xs:complexType name="transferirConCuentaResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ticket" type="tns:ticketDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getUltimasTransferencias" type="tns:getUltimasTransferencias"></xs:element>
+      <xs:complexType name="getUltimasTransferencias">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getUltimasTransferenciasResponse" type="tns:getUltimasTransferenciasResponse"></xs:element>
+      <xs:complexType name="getUltimasTransferenciasResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ultimasTransferencias" type="tns:ticketDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="consultarDatosTitularidadExtendido" type="tns:consultarDatosTitularidadExtendido"></xs:element>
+      <xs:complexType name="consultarDatosTitularidadExtendido">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="cuentaOrigen" type="tns:cuentaDTO"></xs:element>
+          <xs:element minOccurs="0" name="alias" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="consultarDatosTitularidadExtendidoResponse" type="tns:consultarDatosTitularidadExtendidoResponse"></xs:element>
+      <xs:complexType name="consultarDatosTitularidadExtendidoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="titularidadExtendido" type="tns:titularidadExtendidoDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="modificarCBUEnAgenda" type="tns:modificarCBUEnAgenda"></xs:element>
+      <xs:complexType name="modificarCBUEnAgenda">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="item" type="tns:agendaCBUDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="modificarCBUEnAgendaResponse" type="tns:modificarCBUEnAgendaResponse"></xs:element>
+      <xs:complexType name="modificarCBUEnAgendaResponse">
+        <xs:sequence></xs:sequence>
+      </xs:complexType>
+      <xs:element name="agregarCBUEnAgenda" type="tns:agregarCBUEnAgenda"></xs:element>
+      <xs:complexType name="agregarCBUEnAgenda">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="item" type="tns:agendaCBUDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="agregarCBUEnAgendaResponse" type="tns:agregarCBUEnAgendaResponse"></xs:element>
+      <xs:complexType name="agregarCBUEnAgendaResponse">
+        <xs:sequence></xs:sequence>
+      </xs:complexType>
+      <xs:element name="getAgendaCBU" type="tns:getAgendaCBU"></xs:element>
+      <xs:complexType name="getAgendaCBU">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getAgendaCBUResponse" type="tns:getAgendaCBUResponse"></xs:element>
+      <xs:complexType name="getAgendaCBUResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="agendaCBU" type="tns:agendaCBUDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="consultarDatosTitularidad" type="tns:consultarDatosTitularidad"></xs:element>
+      <xs:complexType name="consultarDatosTitularidad">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="cuentaOrigen" type="tns:cuentaDTO"></xs:element>
+          <xs:element minOccurs="0" name="cbuDestino" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="consultarDatosTitularidadResponse" type="tns:consultarDatosTitularidadResponse"></xs:element>
+      <xs:complexType name="consultarDatosTitularidadResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="titularidad" type="tns:titularidadDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="modificarCBUAliasEnAgenda" type="tns:modificarCBUAliasEnAgenda"></xs:element>
+      <xs:complexType name="modificarCBUAliasEnAgenda">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="item" type="tns:agendaCBUAliasDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="modificarCBUAliasEnAgendaResponse" type="tns:modificarCBUAliasEnAgendaResponse"></xs:element>
+      <xs:complexType name="modificarCBUAliasEnAgendaResponse">
+        <xs:sequence></xs:sequence>
+      </xs:complexType>
+      <xs:element name="agregarCBUAliasEnAgenda" type="tns:agregarCBUAliasEnAgenda"></xs:element>
+      <xs:complexType name="agregarCBUAliasEnAgenda">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="item" type="tns:agendaCBUAliasDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="agregarCBUAliasEnAgendaResponse" type="tns:agregarCBUAliasEnAgendaResponse"></xs:element>
+      <xs:complexType name="agregarCBUAliasEnAgendaResponse">
+        <xs:sequence></xs:sequence>
+      </xs:complexType>
+      <xs:element name="consultarCBUAlias" type="tns:consultarCBUAlias"></xs:element>
+      <xs:complexType name="consultarCBUAlias">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="cuenta" type="tns:cuentaDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="consultarCBUAliasResponse" type="tns:consultarCBUAliasResponse"></xs:element>
+      <xs:complexType name="consultarCBUAliasResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cbuAlias" type="tns:cbuAliasDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="borrarCBUAliasDeAgenda" type="tns:borrarCBUAliasDeAgenda"></xs:element>
+      <xs:complexType name="borrarCBUAliasDeAgenda">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="alias" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="borrarCBUAliasDeAgendaResponse" type="tns:borrarCBUAliasDeAgendaResponse"></xs:element>
+      <xs:complexType name="borrarCBUAliasDeAgendaResponse">
+        <xs:sequence></xs:sequence>
+      </xs:complexType>
+      <xs:element name="transferirConDatosOriginante" type="tns:transferirConDatosOriginante"></xs:element>
+      <xs:complexType name="transferirConDatosOriginante">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="transferencia" type="tns:transferenciaDTO"></xs:element>
+          <xs:element minOccurs="0" name="datosOriginante" type="tns:datosOriginanteDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="transferirConDatosOriginanteResponse" type="tns:transferirConDatosOriginanteResponse"></xs:element>
+      <xs:complexType name="transferirConDatosOriginanteResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ticket" type="tns:ticketDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getAgendaCBUExtendido" type="tns:getAgendaCBUExtendido"></xs:element>
+      <xs:complexType name="getAgendaCBUExtendido">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getAgendaCBUExtendidoResponse" type="tns:getAgendaCBUExtendidoResponse"></xs:element>
+      <xs:complexType name="getAgendaCBUExtendidoResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="agendaCBUExtendido" type="tns:agendaCBUExtendidoDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="validarUsuario" type="tns:validarUsuario"></xs:element>
+      <xs:complexType name="validarUsuario">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="nroTarjeta" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="validarUsuarioResponse" type="tns:validarUsuarioResponse"></xs:element>
+      <xs:complexType name="validarUsuarioResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="datosUsuario" type="tns:datosUsuarioDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getCuentas" type="tns:getCuentas"></xs:element>
+      <xs:complexType name="getCuentas">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="getCuentasResponse" type="tns:getCuentasResponse"></xs:element>
+      <xs:complexType name="getCuentasResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="cuentas" type="tns:cuentaDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="consultarLimitesDisponibles" type="tns:consultarLimitesDisponibles"></xs:element>
+      <xs:complexType name="consultarLimitesDisponibles">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="cuenta" type="tns:cuentaDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="consultarLimitesDisponiblesResponse" type="tns:consultarLimitesDisponiblesResponse"></xs:element>
+      <xs:complexType name="consultarLimitesDisponiblesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="cuenta" type="tns:cuentaDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="borrarCBUDeAgenda" type="tns:borrarCBUDeAgenda"></xs:element>
+      <xs:complexType name="borrarCBUDeAgenda">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="nroCBU" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="borrarCBUDeAgendaResponse" type="tns:borrarCBUDeAgendaResponse"></xs:element>
+      <xs:complexType name="borrarCBUDeAgendaResponse">
+        <xs:sequence></xs:sequence>
+      </xs:complexType>
+      <xs:element name="transferirConCBU" type="tns:transferirConCBU"></xs:element>
+      <xs:complexType name="transferirConCBU">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="usuario" type="tns:usuarioDTO"></xs:element>
+          <xs:element minOccurs="0" name="terminal" type="tns:terminalDTO"></xs:element>
+          <xs:element minOccurs="0" name="transferencia" type="tns:transferenciaDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="transferirConCBUResponse" type="tns:transferirConCBUResponse"></xs:element>
+      <xs:complexType name="transferirConCBUResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ticket" type="tns:ticketDTO"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="echo" type="tns:echo"></xs:element>
+      <xs:complexType name="echo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="mensaje" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="echoResponse" type="tns:echoResponse"></xs:element>
+      <xs:complexType name="echoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="respuesta" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getAgendaCBU">
+    <wsdl:part element="tns:getAgendaCBU" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="borrarCBUDeAgenda">
+    <wsdl:part element="tns:borrarCBUDeAgenda" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="consultarCBUAlias">
+    <wsdl:part element="tns:consultarCBUAlias" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="borrarCBUDeAgendaResponse">
+    <wsdl:part element="tns:borrarCBUDeAgendaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transferirConDatosOriginante">
+    <wsdl:part element="tns:transferirConDatosOriginante" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUltimasTransferenciasResponse">
+    <wsdl:part element="tns:getUltimasTransferenciasResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modificarCBUEnAgenda">
+    <wsdl:part element="tns:modificarCBUEnAgenda" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="consultarLimitesDisponibles">
+    <wsdl:part element="tns:consultarLimitesDisponibles" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="consultarDatosTitularidadExtendidoResponse">
+    <wsdl:part element="tns:consultarDatosTitularidadExtendidoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="agregarCBUAliasEnAgendaResponse">
+    <wsdl:part element="tns:agregarCBUAliasEnAgendaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="borrarCBUAliasDeAgenda">
+    <wsdl:part element="tns:borrarCBUAliasDeAgenda" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transferirConCuenta">
+    <wsdl:part element="tns:transferirConCuenta" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAgendaCBUExtendidoResponse">
+    <wsdl:part element="tns:getAgendaCBUExtendidoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modificarCBUEnAgendaResponse">
+    <wsdl:part element="tns:modificarCBUEnAgendaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validarUsuario">
+    <wsdl:part element="tns:validarUsuario" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="borrarCBUAliasDeAgendaResponse">
+    <wsdl:part element="tns:borrarCBUAliasDeAgendaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCuentasResponse">
+    <wsdl:part element="tns:getCuentasResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="agregarCBUEnAgendaResponse">
+    <wsdl:part element="tns:agregarCBUEnAgendaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modificarCBUAliasEnAgendaResponse">
+    <wsdl:part element="tns:modificarCBUAliasEnAgendaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAgendaCBUExtendido">
+    <wsdl:part element="tns:getAgendaCBUExtendido" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transferirConCBU">
+    <wsdl:part element="tns:transferirConCBU" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validarUsuarioResponse">
+    <wsdl:part element="tns:validarUsuarioResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="echo">
+    <wsdl:part element="tns:echo" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transferirConDatosOriginanteResponse">
+    <wsdl:part element="tns:transferirConDatosOriginanteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="consultarCBUAliasResponse">
+    <wsdl:part element="tns:consultarCBUAliasResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="agregarCBUEnAgenda">
+    <wsdl:part element="tns:agregarCBUEnAgenda" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="consultarDatosTitularidad">
+    <wsdl:part element="tns:consultarDatosTitularidad" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="agregarCBUAliasEnAgenda">
+    <wsdl:part element="tns:agregarCBUAliasEnAgenda" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="echoResponse">
+    <wsdl:part element="tns:echoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCuentas">
+    <wsdl:part element="tns:getCuentas" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transferirConCuentaResponse">
+    <wsdl:part element="tns:transferirConCuentaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transferirConCBUResponse">
+    <wsdl:part element="tns:transferirConCBUResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="consultarLimitesDisponiblesResponse">
+    <wsdl:part element="tns:consultarLimitesDisponiblesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUltimasTransferencias">
+    <wsdl:part element="tns:getUltimasTransferencias" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="consultarDatosTitularidadResponse">
+    <wsdl:part element="tns:consultarDatosTitularidadResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAgendaCBUResponse">
+    <wsdl:part element="tns:getAgendaCBUResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="consultarDatosTitularidadExtendido">
+    <wsdl:part element="tns:consultarDatosTitularidadExtendido" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modificarCBUAliasEnAgenda">
+    <wsdl:part element="tns:modificarCBUAliasEnAgenda" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="transferenciasV2">
+    <wsdl:operation name="transferirConCuenta">
+      <wsdl:input message="tns:transferirConCuenta" name="transferirConCuenta">
+      </wsdl:input>
+      <wsdl:output message="tns:transferirConCuentaResponse" name="transferirConCuentaResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUltimasTransferencias">
+      <wsdl:input message="tns:getUltimasTransferencias" name="getUltimasTransferencias">
+      </wsdl:input>
+      <wsdl:output message="tns:getUltimasTransferenciasResponse" name="getUltimasTransferenciasResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarDatosTitularidadExtendido">
+      <wsdl:input message="tns:consultarDatosTitularidadExtendido" name="consultarDatosTitularidadExtendido">
+      </wsdl:input>
+      <wsdl:output message="tns:consultarDatosTitularidadExtendidoResponse" name="consultarDatosTitularidadExtendidoResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modificarCBUEnAgenda">
+      <wsdl:input message="tns:modificarCBUEnAgenda" name="modificarCBUEnAgenda">
+      </wsdl:input>
+      <wsdl:output message="tns:modificarCBUEnAgendaResponse" name="modificarCBUEnAgendaResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="agregarCBUEnAgenda">
+      <wsdl:input message="tns:agregarCBUEnAgenda" name="agregarCBUEnAgenda">
+      </wsdl:input>
+      <wsdl:output message="tns:agregarCBUEnAgendaResponse" name="agregarCBUEnAgendaResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAgendaCBU">
+      <wsdl:input message="tns:getAgendaCBU" name="getAgendaCBU">
+      </wsdl:input>
+      <wsdl:output message="tns:getAgendaCBUResponse" name="getAgendaCBUResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarDatosTitularidad">
+      <wsdl:input message="tns:consultarDatosTitularidad" name="consultarDatosTitularidad">
+      </wsdl:input>
+      <wsdl:output message="tns:consultarDatosTitularidadResponse" name="consultarDatosTitularidadResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modificarCBUAliasEnAgenda">
+      <wsdl:input message="tns:modificarCBUAliasEnAgenda" name="modificarCBUAliasEnAgenda">
+      </wsdl:input>
+      <wsdl:output message="tns:modificarCBUAliasEnAgendaResponse" name="modificarCBUAliasEnAgendaResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="agregarCBUAliasEnAgenda">
+      <wsdl:input message="tns:agregarCBUAliasEnAgenda" name="agregarCBUAliasEnAgenda">
+      </wsdl:input>
+      <wsdl:output message="tns:agregarCBUAliasEnAgendaResponse" name="agregarCBUAliasEnAgendaResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarCBUAlias">
+      <wsdl:input message="tns:consultarCBUAlias" name="consultarCBUAlias">
+      </wsdl:input>
+      <wsdl:output message="tns:consultarCBUAliasResponse" name="consultarCBUAliasResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="borrarCBUAliasDeAgenda">
+      <wsdl:input message="tns:borrarCBUAliasDeAgenda" name="borrarCBUAliasDeAgenda">
+      </wsdl:input>
+      <wsdl:output message="tns:borrarCBUAliasDeAgendaResponse" name="borrarCBUAliasDeAgendaResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transferirConDatosOriginante">
+      <wsdl:input message="tns:transferirConDatosOriginante" name="transferirConDatosOriginante">
+      </wsdl:input>
+      <wsdl:output message="tns:transferirConDatosOriginanteResponse" name="transferirConDatosOriginanteResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAgendaCBUExtendido">
+      <wsdl:input message="tns:getAgendaCBUExtendido" name="getAgendaCBUExtendido">
+      </wsdl:input>
+      <wsdl:output message="tns:getAgendaCBUExtendidoResponse" name="getAgendaCBUExtendidoResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validarUsuario">
+      <wsdl:input message="tns:validarUsuario" name="validarUsuario">
+      </wsdl:input>
+      <wsdl:output message="tns:validarUsuarioResponse" name="validarUsuarioResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCuentas">
+      <wsdl:input message="tns:getCuentas" name="getCuentas">
+      </wsdl:input>
+      <wsdl:output message="tns:getCuentasResponse" name="getCuentasResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarLimitesDisponibles">
+      <wsdl:input message="tns:consultarLimitesDisponibles" name="consultarLimitesDisponibles">
+      </wsdl:input>
+      <wsdl:output message="tns:consultarLimitesDisponiblesResponse" name="consultarLimitesDisponiblesResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="borrarCBUDeAgenda">
+      <wsdl:input message="tns:borrarCBUDeAgenda" name="borrarCBUDeAgenda">
+      </wsdl:input>
+      <wsdl:output message="tns:borrarCBUDeAgendaResponse" name="borrarCBUDeAgendaResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transferirConCBU">
+      <wsdl:input message="tns:transferirConCBU" name="transferirConCBU">
+      </wsdl:input>
+      <wsdl:output message="tns:transferirConCBUResponse" name="transferirConCBUResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echo">
+      <wsdl:input message="tns:echo" name="echo">
+      </wsdl:input>
+      <wsdl:output message="tns:echoResponse" name="echoResponse">
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TransferenciasV2ServiceSoapBinding" type="tns:transferenciasV2">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="getUltimasTransferencias">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getUltimasTransferencias">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getUltimasTransferenciasResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transferirConCuenta">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="transferirConCuenta">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="transferirConCuentaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarDatosTitularidadExtendido">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="consultarDatosTitularidadExtendido">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="consultarDatosTitularidadExtendidoResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modificarCBUEnAgenda">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="modificarCBUEnAgenda">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="modificarCBUEnAgendaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="agregarCBUEnAgenda">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="agregarCBUEnAgenda">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="agregarCBUEnAgendaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAgendaCBU">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getAgendaCBU">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getAgendaCBUResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarDatosTitularidad">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="consultarDatosTitularidad">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="consultarDatosTitularidadResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="agregarCBUAliasEnAgenda">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="agregarCBUAliasEnAgenda">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="agregarCBUAliasEnAgendaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modificarCBUAliasEnAgenda">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="modificarCBUAliasEnAgenda">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="modificarCBUAliasEnAgendaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="borrarCBUAliasDeAgenda">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="borrarCBUAliasDeAgenda">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="borrarCBUAliasDeAgendaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarCBUAlias">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="consultarCBUAlias">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="consultarCBUAliasResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transferirConDatosOriginante">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="transferirConDatosOriginante">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="transferirConDatosOriginanteResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAgendaCBUExtendido">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getAgendaCBUExtendido">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getAgendaCBUExtendidoResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validarUsuario">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="validarUsuario">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="validarUsuarioResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCuentas">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getCuentas">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getCuentasResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultarLimitesDisponibles">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="consultarLimitesDisponibles">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="consultarLimitesDisponiblesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="borrarCBUDeAgenda">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="borrarCBUDeAgenda">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="borrarCBUDeAgendaResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="transferirConCBU">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="transferirConCBU">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="transferirConCBUResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="echo">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="echo">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="echoResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TransferenciasV2Service">
+    <wsdl:port binding="tns:TransferenciasV2ServiceSoapBinding" name="TransferenciasV2Port">
+      <soap:address location="https://wssrv3.banelcoservices.com.ar/servicios/transferenciasV2"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
