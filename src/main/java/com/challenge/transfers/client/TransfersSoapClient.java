@@ -4,6 +4,7 @@ import com.challenge.transfers.client.soap.GetAgendaCBU;
 import com.challenge.transfers.client.soap.GetAgendaCBUResponse;
 import com.challenge.transfers.client.soap.TerminalDTO;
 import com.challenge.transfers.client.soap.UsuarioDTO;
+import com.challenge.transfers.model.api.DocumentType;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
 public class TransfersSoapClient extends WebServiceGatewaySupport {
@@ -21,11 +22,11 @@ public class TransfersSoapClient extends WebServiceGatewaySupport {
   }
 
   public GetAgendaCBUResponse getRecipientsCBU(
-      String customerDocument, String customerDocumentType) {
+      String customerDocument, DocumentType customerDocumentType) {
 
     UsuarioDTO usuario = new UsuarioDTO();
     usuario.setNroDocumento(customerDocument);
-    usuario.setTipoDocumento(customerDocumentType);
+    usuario.setTipoDocumento(customerDocumentType.getCode());
     usuario.setPassword(password);
 
     TerminalDTO terminalDTO = new TerminalDTO();

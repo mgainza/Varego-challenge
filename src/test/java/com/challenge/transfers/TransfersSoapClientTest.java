@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import com.challenge.transfers.client.TransfersSoapClient;
 import com.challenge.transfers.client.soap.GetAgendaCBU;
 import com.challenge.transfers.client.soap.GetAgendaCBUResponse;
+import com.challenge.transfers.model.api.DocumentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,7 +36,7 @@ class TransfersSoapClientTest {
     when(webServiceTemplate.marshalSendAndReceive(any(GetAgendaCBU.class)))
         .thenReturn(mockResponse);
 
-    GetAgendaCBUResponse result = client.getRecipientsCBU("32345379", "01");
+    GetAgendaCBUResponse result = client.getRecipientsCBU("32345379", DocumentType.DNI);
 
     assertThat(result).isNotNull();
   }
@@ -47,7 +48,7 @@ class TransfersSoapClientTest {
 
     ArgumentCaptor<GetAgendaCBU> captor = ArgumentCaptor.forClass(GetAgendaCBU.class);
 
-    client.getRecipientsCBU("32345379", "01");
+    client.getRecipientsCBU("32345379", DocumentType.DNI);
 
     verify(webServiceTemplate).marshalSendAndReceive(captor.capture());
     GetAgendaCBU request = captor.getValue();
@@ -64,7 +65,7 @@ class TransfersSoapClientTest {
 
     ArgumentCaptor<GetAgendaCBU> captor = ArgumentCaptor.forClass(GetAgendaCBU.class);
 
-    client.getRecipientsCBU("32345379", "01");
+    client.getRecipientsCBU("32345379", DocumentType.DNI);
 
     verify(webServiceTemplate).marshalSendAndReceive(captor.capture());
     GetAgendaCBU request = captor.getValue();
