@@ -46,7 +46,7 @@ class RecipientsControllerIntegrationTest {
         .andExpect(jsonPath("$.recipient[0].cuit").value("20123456789"))
         .andExpect(jsonPath("$.recipient[0].description").value("Lucas Pérez"))
         .andExpect(jsonPath("$.recipient[0].account.cbu").value("2850001040094059465088"))
-        .andExpect(jsonPath("$.recipient[0].account.code").value("OWN_CHECKING"))
+        .andExpect(jsonPath("$.recipient[0].account.code").value(1))
         .andExpect(jsonPath("$.recipient[0].account.current").value(true))
         .andExpect(jsonPath("$.recipient[0].account.own").value(false));
   }
