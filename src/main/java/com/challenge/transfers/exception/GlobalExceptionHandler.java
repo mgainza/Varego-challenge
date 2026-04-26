@@ -26,7 +26,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
       Exception ex, Object body, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
 
     String path = ((ServletWebRequest) request).getRequest().getRequestURI();
-    log.warn("Framework exception [path={}, status={}, error={}]", path, status.value(), ex.getMessage());
+    log.warn(
+        "Framework exception [path={}, status={}, error={}]",
+        path,
+        status.value(),
+        ex.getMessage());
 
     String code = "ERR-" + status.value();
     ErrorDetail detail = new ErrorDetail("ER-" + status.value(), ex.getMessage(), path);
@@ -58,7 +62,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         "SOAP backend timeout [path={}, error={}]", request.getRequestURI(), ex.getMessage(), ex);
 
     ErrorDetail detail =
-        new ErrorDetail("ER-504", "Upstream service did not respond in time", request.getRequestURI());
+        new ErrorDetail(
+            "ER-504", "Upstream service did not respond in time", request.getRequestURI());
 
     return ResponseEntity.status(504)
         .body(new ErrorResponse("ERR-504", uuid(), "Gateway timeout", List.of(detail)));
@@ -71,7 +76,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     log.error(
         "SOAP gateway error [path={}, error={}]", request.getRequestURI(), ex.getMessage(), ex);
 
-    ErrorDetail detail = new ErrorDetail("ER-502", "Upstream service error", request.getRequestURI());
+    ErrorDetail detail =
+        new ErrorDetail("ER-502", "Upstream service error", request.getRequestURI());
 
     return ResponseEntity.status(502)
         .body(new ErrorResponse("ERR-502", uuid(), "Bad gateway", List.of(detail)));
