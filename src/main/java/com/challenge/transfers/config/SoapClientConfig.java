@@ -10,28 +10,30 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 @EnableConfigurationProperties(SoapProperties.class)
 public class SoapClientConfig {
 
+  private final SoapProperties soapProperties;
 
-    private final SoapProperties soapProperties;
+  public SoapClientConfig(SoapProperties soapProperties) {
+    this.soapProperties = soapProperties;
+  }
 
-    public SoapClientConfig(SoapProperties soapProperties) {
-        this.soapProperties = soapProperties;
-    }
+  @Bean
+  public Jaxb2Marshaller marshaller() {
+    Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+    marshaller.setContextPath("com.challenge.transfers.client.soap");
+    return marshaller;
+  }
 
-
-    @Bean
-    public Jaxb2Marshaller marshaller() {
-        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath("com.challenge.transfers.client.soap");
-        return marshaller;
-    }
-
-    @Bean
-    public TransfersSoapClient transfersSoapClient(Jaxb2Marshaller marshaller) {
-        TransfersSoapClient client = new TransfersSoapClient(soapProperties.channel(), soapProperties.terminal(), soapProperties.password(), soapProperties.ip());
-        client.setDefaultUri(soapProperties.url());
-        client.setMarshaller(marshaller);
-        client.setUnmarshaller(marshaller);
-        return client;
-    }
-
+  @Bean
+  public TransfersSoapClient transfersSoapClient(Jaxb2Marshaller marshaller) {
+    TransfersSoapClient client =
+        new TransfersSoapClient(
+            soapProperties.channel(),
+            soapProperties.terminal(),
+            soapProperties.password(),
+            soapProperties.ip());
+    client.setDefaultUri(soapProperties.url());
+    client.setMarshaller(marshaller);
+    client.setUnmarshaller(marshaller);
+    return client;
+  }
 }

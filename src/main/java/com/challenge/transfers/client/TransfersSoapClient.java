@@ -8,34 +8,34 @@ import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
 public class TransfersSoapClient extends WebServiceGatewaySupport {
 
-    private final String channel;
-    private final String terminal;
-    private final String password;
-    private final String ip;
+  private final String channel;
+  private final String terminal;
+  private final String password;
+  private final String ip;
 
-    public TransfersSoapClient(String channel, String terminal, String password, String ip) {
-        this.channel = channel;
-        this.terminal = terminal;
-        this.password = password;
-        this.ip = ip;
-    }
+  public TransfersSoapClient(String channel, String terminal, String password, String ip) {
+    this.channel = channel;
+    this.terminal = terminal;
+    this.password = password;
+    this.ip = ip;
+  }
 
+  public GetAgendaCBUResponse getRecipientsCBU(
+      String customerDocument, String customerDocumentType) {
 
-    public GetAgendaCBUResponse getRecipientsCBU(String customerDocument, String customerDocumentType) {
+    UsuarioDTO usuario = new UsuarioDTO();
+    usuario.setNroDocumento(customerDocument);
+    usuario.setTipoDocumento(customerDocumentType);
+    usuario.setPassword(password);
 
-        UsuarioDTO usuario = new UsuarioDTO();
-        usuario.setNroDocumento(customerDocument);
-        usuario.setTipoDocumento(customerDocumentType);
-        usuario.setPassword(password);
+    TerminalDTO terminalDTO = new TerminalDTO();
+    terminalDTO.setTerminal(terminal);
+    terminalDTO.setCanal(channel);
+    terminalDTO.setDireccionIp(ip);
+    GetAgendaCBU request = new GetAgendaCBU();
+    request.setUsuario(usuario);
+    request.setTerminal(terminalDTO);
 
-        TerminalDTO terminalDTO = new TerminalDTO();
-        terminalDTO.setTerminal(terminal);
-        terminalDTO.setCanal(channel);
-        terminalDTO.setDireccionIp(ip);
-        GetAgendaCBU request = new GetAgendaCBU();
-        request.setUsuario(usuario);
-        request.setTerminal(terminalDTO);
-
-        return (GetAgendaCBUResponse) getWebServiceTemplate().marshalSendAndReceive(request);
-    }
+    return (GetAgendaCBUResponse) getWebServiceTemplate().marshalSendAndReceive(request);
+  }
 }
