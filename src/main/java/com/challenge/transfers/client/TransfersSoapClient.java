@@ -1,9 +1,8 @@
 package com.challenge.transfers.client;
 
-import com.challenge.transfers.client.soap.GetAgendaCBU;
-import com.challenge.transfers.client.soap.GetAgendaCBUResponse;
-import com.challenge.transfers.client.soap.TerminalDTO;
-import com.challenge.transfers.client.soap.UsuarioDTO;
+import com.challenge.transfers.client.soap.*;
+import com.challenge.transfers.model.api.DocumentType;
+import jakarta.xml.bind.JAXBElement;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
 public class TransfersSoapClient extends WebServiceGatewaySupport {
@@ -21,11 +20,11 @@ public class TransfersSoapClient extends WebServiceGatewaySupport {
   }
 
   public GetAgendaCBUResponse getRecipientsCBU(
-      String customerDocument, String customerDocumentType) {
+      String customerDocument, DocumentType customerDocumentType) {
 
     UsuarioDTO usuario = new UsuarioDTO();
     usuario.setNroDocumento(customerDocument);
-    usuario.setTipoDocumento(customerDocumentType);
+    usuario.setTipoDocumento(customerDocumentType.getCode());
     usuario.setPassword(password);
 
     TerminalDTO terminalDTO = new TerminalDTO();
@@ -36,6 +35,14 @@ public class TransfersSoapClient extends WebServiceGatewaySupport {
     request.setUsuario(usuario);
     request.setTerminal(terminalDTO);
 
-    return (GetAgendaCBUResponse) getWebServiceTemplate().marshalSendAndReceive(request);
+    ObjectFactory objectFactory = new ObjectFactory();
+
+    Object raw =
+        getWebServiceTemplate().marshalSendAndReceive(objectFactory.createGetAgendaCBU(request));
+
+    if (raw instanceof JAXBElement<?> jaxbElement) {
+      return (GetAgendaCBUResponse) jaxbElement.getValue();
+    }
+    return (GetAgendaCBUResponse) raw;
   }
 }

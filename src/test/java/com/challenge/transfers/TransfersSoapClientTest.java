@@ -8,6 +8,8 @@ import static org.mockito.Mockito.when;
 import com.challenge.transfers.client.TransfersSoapClient;
 import com.challenge.transfers.client.soap.GetAgendaCBU;
 import com.challenge.transfers.client.soap.GetAgendaCBUResponse;
+import com.challenge.transfers.model.api.DocumentType;
+import jakarta.xml.bind.JAXBElement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,25 +34,25 @@ class TransfersSoapClientTest {
   @Test
   void shouldReturnResponse_whenSoapCallSucceeds() {
     GetAgendaCBUResponse mockResponse = new GetAgendaCBUResponse();
-    when(webServiceTemplate.marshalSendAndReceive(any(GetAgendaCBU.class)))
-        .thenReturn(mockResponse);
+    when(webServiceTemplate.marshalSendAndReceive(any(JAXBElement.class))).thenReturn(mockResponse);
 
-    GetAgendaCBUResponse result = client.getRecipientsCBU("32345379", "01");
+    GetAgendaCBUResponse result = client.getRecipientsCBU("32345379", DocumentType.DNI);
 
     assertThat(result).isNotNull();
   }
 
   @Test
+  @SuppressWarnings("unchecked")
   void shouldBuildRequestWithCorrectUserData() {
-    when(webServiceTemplate.marshalSendAndReceive(any(GetAgendaCBU.class)))
+    when(webServiceTemplate.marshalSendAndReceive(any(JAXBElement.class)))
         .thenReturn(new GetAgendaCBUResponse());
 
-    ArgumentCaptor<GetAgendaCBU> captor = ArgumentCaptor.forClass(GetAgendaCBU.class);
+    ArgumentCaptor<JAXBElement<GetAgendaCBU>> captor = ArgumentCaptor.forClass(JAXBElement.class);
 
-    client.getRecipientsCBU("32345379", "01");
+    client.getRecipientsCBU("32345379", DocumentType.DNI);
 
     verify(webServiceTemplate).marshalSendAndReceive(captor.capture());
-    GetAgendaCBU request = captor.getValue();
+    GetAgendaCBU request = captor.getValue().getValue();
 
     assertThat(request.getUsuario().getNroDocumento()).isEqualTo("32345379");
     assertThat(request.getUsuario().getTipoDocumento()).isEqualTo("01");
@@ -58,16 +60,17 @@ class TransfersSoapClientTest {
   }
 
   @Test
+  @SuppressWarnings("unchecked")
   void shouldBuildRequestWithCorrectTerminalData() {
-    when(webServiceTemplate.marshalSendAndReceive(any(GetAgendaCBU.class)))
+    when(webServiceTemplate.marshalSendAndReceive(any(JAXBElement.class)))
         .thenReturn(new GetAgendaCBUResponse());
 
-    ArgumentCaptor<GetAgendaCBU> captor = ArgumentCaptor.forClass(GetAgendaCBU.class);
+    ArgumentCaptor<JAXBElement<GetAgendaCBU>> captor = ArgumentCaptor.forClass(JAXBElement.class);
 
-    client.getRecipientsCBU("32345379", "01");
+    client.getRecipientsCBU("32345379", DocumentType.DNI);
 
     verify(webServiceTemplate).marshalSendAndReceive(captor.capture());
-    GetAgendaCBU request = captor.getValue();
+    GetAgendaCBU request = captor.getValue().getValue();
 
     assertThat(request.getTerminal().getCanal()).isEqualTo("WEB");
     assertThat(request.getTerminal().getTerminal()).isEqualTo("MS-TRANSFERS");
