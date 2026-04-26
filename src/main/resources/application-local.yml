@@ -1,6 +1,6 @@
 soap:
   transfers:
-      url: localhost:3003/servicios/transferenciasV2
+      url: http://localhost:3003/servicios/transferenciasV2
       channel: WEB
       terminal: MS-TRANSFERS
       password: password
