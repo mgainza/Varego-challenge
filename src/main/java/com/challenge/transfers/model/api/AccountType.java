@@ -15,4 +15,13 @@ public enum AccountType {
   public int getCode() {
     return code;
   }
+
+  public static AccountType fromCode(String code) {
+    if (code == null || code.isBlank()) return null;
+    int numeric = Integer.parseInt(code);
+    for (AccountType type : values()) {
+      if (type.code == numeric) return type;
+    }
+    throw new IllegalArgumentException("Unknown account type code: " + code);
+  }
 }
