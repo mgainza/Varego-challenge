@@ -34,8 +34,7 @@ class TransfersSoapClientTest {
   @Test
   void shouldReturnResponse_whenSoapCallSucceeds() {
     GetAgendaCBUResponse mockResponse = new GetAgendaCBUResponse();
-    when(webServiceTemplate.marshalSendAndReceive(any(JAXBElement.class)))
-        .thenReturn(mockResponse);
+    when(webServiceTemplate.marshalSendAndReceive(any(JAXBElement.class))).thenReturn(mockResponse);
 
     GetAgendaCBUResponse result = client.getRecipientsCBU("32345379", DocumentType.DNI);
 
