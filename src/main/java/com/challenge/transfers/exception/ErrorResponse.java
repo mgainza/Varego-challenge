@@ -1,3 +1,10 @@
 package com.challenge.transfers.exception;
 
-public record ErrorResponse(String code, String message) {}
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+
+public record ErrorResponse(
+    @JsonProperty("Code") String code,
+    @JsonProperty("Id") String id,
+    @JsonProperty("Message") String message,
+    @JsonProperty("Errors") List<ErrorDetail> errors) {}
