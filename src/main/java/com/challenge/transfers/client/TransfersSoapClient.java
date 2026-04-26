@@ -20,7 +20,7 @@ public class TransfersSoapClient extends WebServiceGatewaySupport {
   }
 
   public GetAgendaCBUResponse getRecipientsCBU(
-          String customerDocument, DocumentType customerDocumentType) {
+      String customerDocument, DocumentType customerDocumentType) {
 
     UsuarioDTO usuario = new UsuarioDTO();
     usuario.setNroDocumento(customerDocument);
@@ -37,8 +37,8 @@ public class TransfersSoapClient extends WebServiceGatewaySupport {
 
     ObjectFactory objectFactory = new ObjectFactory();
 
-    Object raw = getWebServiceTemplate()
-            .marshalSendAndReceive(objectFactory.createGetAgendaCBU(request));
+    Object raw =
+        getWebServiceTemplate().marshalSendAndReceive(objectFactory.createGetAgendaCBU(request));
 
     if (raw instanceof JAXBElement<?> jaxbElement) {
       return (GetAgendaCBUResponse) jaxbElement.getValue();
