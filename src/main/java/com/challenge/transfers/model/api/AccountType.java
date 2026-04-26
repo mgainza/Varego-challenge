@@ -1,5 +1,7 @@
 package com.challenge.transfers.model.api;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum AccountType {
   OWN_CHECKING(1),
   NON_OWN_CHECKING(2),
@@ -12,6 +14,7 @@ public enum AccountType {
     this.code = code;
   }
 
+  @JsonValue
   public int getCode() {
     return code;
   }
