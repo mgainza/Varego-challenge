@@ -56,7 +56,7 @@ The file `docs/Transfers-Mock-get-recipients.json` contains a pre-configured Moc
    ```
 
 2. **Fix the Content-Type header before starting (required):**
-   Open the file and change the response header from `application/xml` to `text/xml; charset=utf-8`.
+   Open the file and change the response header from `application/xml` to `text/xml;`.
 
    > The provided mock uses `Content-Type: application/xml` but SOAP 1.1 requires `text/xml`
    > (WS-I Basic Profile 1.1, section 3.1.1). Spring WS will reject the response otherwise.
