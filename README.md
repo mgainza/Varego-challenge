@@ -18,18 +18,7 @@ response back to JSON, keeping the client completely decoupled from the SOAP bac
 
 ### 1. Start the mock backend
 
-Import `Transfers-Mock-get-recipients.json` in Mockoon.
-
-> ⚠️ **Required fix before starting the mock:**
-> The provided mock file has `Content-Type: application/xml` in its response headers.
-> SOAP 1.1 requires `text/xml` (WS-I Basic Profile 1.1, section 3.1.1).
-> Change the header to `text/xml; charset=utf-8` before starting the mock,
-> otherwise Spring WS will fail to parse the response.
->
-> The problem was in the mock, not in the application. Patching the client to tolerate
-> a non-standard header would mask a real integration issue.
-
-The mock will listen on `http://localhost:3003`.
+See [Testing with Mockoon](#testing-with-mockoon) for setup instructions.
 
 ### 2. Run the application
 
@@ -51,6 +40,65 @@ Example:
 ```bash
 curl -H "Authorization: Bearer test-token" \
   "http://localhost:8080/v1/transfers/customers-document/32345379/recipients?customer-document-type=01"
+```
+
+---
+
+## Testing with Mockoon
+
+The file `docs/Transfers-Mock-get-recipients.json` contains a pre-configured Mockoon environment that simulates the SOAP backend.
+
+### Setup
+
+1. Install [Mockoon Desktop](https://mockoon.com/download/) or the CLI:
+   ```bash
+   npm install -g @mockoon/cli
+   ```
+
+2. **Fix the Content-Type header before starting (required):**
+   Open the file and change the response header from `application/xml` to `text/xml; charset=utf-8`.
+
+   > The provided mock uses `Content-Type: application/xml` but SOAP 1.1 requires `text/xml`
+   > (WS-I Basic Profile 1.1, section 3.1.1). Spring WS will reject the response otherwise.
+   > This is a problem in the mock file, not in the application.
+
+3. Start the mock:
+
+   **Desktop:** File → Open environment → select `docs/Transfers-Mock-get-recipients.json` → click ▶
+
+   **CLI:**
+   ```bash
+   mockoon-cli start --data docs/Transfers-Mock-get-recipients.json --port 3003
+   ```
+
+### End-to-end call
+
+With both the mock and the application running:
+
+```bash
+curl -s -H "Authorization: Bearer test-token" \
+  "http://localhost:8080/v1/transfers/customers-document/32345379/recipients?customer-document-type=01" \
+  | jq .
+```
+
+Expected response shape:
+
+```json
+{
+  "recipient": [
+    {
+      "cuit": "20123456789",
+      "description": "ROSA LOPEZ",
+      "account": {
+        "cbu": "2850672840027388702207",
+        "code": 4,
+        "description": "Es Otra Cuenta No Propia",
+        "current": true,
+        "own": false
+      }
+    }
+  ]
+}
 ```
 
 ---
