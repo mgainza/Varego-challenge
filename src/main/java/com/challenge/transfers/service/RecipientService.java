@@ -49,7 +49,8 @@ public class RecipientService {
     try {
       response = recipientMapper.toRecipientsGetResponse(soapResponse);
     } catch (IllegalArgumentException ex) {
-      throw new SoapGatewayException("SOAP backend returned unrecognized data: " + ex.getMessage(), ex);
+      throw new SoapGatewayException(
+          "SOAP backend returned unrecognized data: " + ex.getMessage(), ex);
     }
 
     log.info(
