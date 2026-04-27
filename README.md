@@ -23,7 +23,7 @@ See [Testing with Mockoon](#testing-with-mockoon) for setup instructions.
 ### 2. Run the application
 
 ```bash
-mvn spring-boot:run
+./mvnw spring-boot:run
 ```
 
 The `local` Spring profile is activated automatically by the Maven plugin configuration
@@ -106,7 +106,7 @@ Expected response shape:
 ## Running tests and full verification
 
 ```bash
-mvn verify
+./mvnw verify
 ```
 
 ---
@@ -116,8 +116,8 @@ mvn verify
 This project uses Spotless with Google Java Format.
 
 ```bash
-mvn spotless:apply   # apply formatting
-mvn spotless:check   # verify (used in CI)
+./mvnw spotless:apply   # apply formatting
+./mvnw spotless:check   # verify (used in CI)
 ```
 
 ---
