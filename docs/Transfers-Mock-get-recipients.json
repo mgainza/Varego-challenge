@@ -1,0 +1,194 @@
+{
+  "uuid": "700384ee-6f3a-48b0-b32b-c0492f69cce8",
+  "lastMigration": 32,
+  "name": "Transfers-get-recipients",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3003,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "d2af0c22-d3bc-4f6f-aad0-58aa589a58fc",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "servicios/transferenciasV2",
+      "responses": [
+        {
+          "uuid": "735e2111-cf91-45b1-a58a-5716d7f46a60",
+          "body": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ws=\"http://ws.transferencias.banelco.com/\">\r\n\t<soapenv:Header/>\r\n\t<soapenv:Body>\r\n\t\t<ws:getAgendaCBUResponse>\r\n\t\t\t<!--Zero or more repetitions:-->\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>test                  </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001040094075882478</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>3</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta Propia            </descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>true</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>test                  </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001020094071269734</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>3</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>true</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>1111       </cuitCuil>\r\n\t\t\t\t\t<descripcion>test                  </descripcion>\r\n\t\t\t\t\t<nroCBU>0070033730004023804130</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850000320094032777694</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia      </descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850000320094034926414</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850000320094035874484</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001020094052701404</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001020094054075204</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001020094054176334</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001020094056777924</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001020000830793374</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001020000852364394</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001020094074213424</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001020094074741594</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001020094076627744</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001020094076643454</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>A                     </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001020094077534304</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>prueba test alerta    </descripcion>\r\n\t\t\t\t\t<nroCBU>2850025640094949061008</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>alerta 3ros           </descripcion>\r\n\t\t\t\t\t<nroCBU>2850682740095210170348</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>vale22                </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001020094066077034</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>3</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>true</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>Cta tercero banco Macr</descripcion>\r\n\t\t\t\t\t<nroCBU>2850001030094005821211</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>CC Capezio            </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001030094012343241</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>2</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Una Cuenta Corriente No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>true</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>CTA pro Yung          </descripcion>\r\n\t\t\t\t\t<nroCBU>2850025640094014048158</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>3</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>true</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>Netri Daniel          </descripcion>\r\n\t\t\t\t\t<nroCBU>2850672840027388702207</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t\t<agendaCBU>\r\n\t\t\t\t\t<cuitCuil>           </cuitCuil>\r\n\t\t\t\t\t<descripcion>familcar              </descripcion>\r\n\t\t\t\t\t<nroCBU>2850001040094059465088</nroCBU>\r\n\t\t\t\t\t<propiedadDTO>\r\n\t\t\t\t\t\t<codigo>4</codigo>\r\n\t\t\t\t\t\t<descripcion>Es Otra Cuenta No Propia</descripcion>\r\n\t\t\t\t\t\t<ctaCorriente>false</ctaCorriente>\r\n\t\t\t\t\t\t<propia>false</propia>\r\n\t\t\t\t\t</propiedadDTO>\r\n\t\t\t\t</agendaCBU>\r\n\t\t\t</ws:getAgendaCBUResponse>\r\n\t\t</soapenv:Body>\r\n\t</soapenv:Envelope>",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "- Response ok ",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "17954a33-12f6-43d7-ab22-d4f975703724",
+          "body": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ws=\"http://ws.transferencias.banelco.com/\">\r\n\t<soapenv:Header/>\r\n\t<soapenv:Body>\r\n\t\t<ws:getAgendaCBUResponse>\r\n\t\t\t<!--Zero or more repetitions:-->\r\n\t\t\t</ws:getAgendaCBUResponse>\r\n\t\t</soapenv:Body>\r\n\t</soapenv:Envelope>",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "- Sin data",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "5957725b-11eb-4798-b219-468c4b1a0be3",
+          "body": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ws=\"http://ws.transferencias.banelco.com/\">\r\n</soapenv:Envelope>",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "- Objeto vacio",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "1d85ea06-276d-4a3b-8fc9-4dcf0780d83e",
+          "body": "<NS1:Fault xmlns:NS1=\"http://schemas.xmlsoap.org/soap/envelope/\">\n\t<faultcode>env:Client</faultcode>\n\t<faultstring>Internal Error</faultstring>\n</NS1:Fault",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "- Con Fault response ",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "3e6511c7-6611-43d1-9f8e-b3a51778857c",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "3fa2861f-4fde-49af-8f4d-aa72af19a48e",
+          "body": "{}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "c6d736e0-113b-4b71-986a-8ea5383d2fb4",
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\r\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n\t<soap:Body>\r\n\t\t<soap:Fault>\r\n\t\t\t<faultcode>soap:50</faultcode>\r\n\t\t\t<faultstring> Los datos ingresados no son correctos, por favor ingreselos nuevamente.</faultstring>\r\n\t\t</soap:Fault>\r\n\t</soap:Body>\r\n</soap:Envelope>",
+          "latency": 0,
+          "statusCode": 500,
+          "label": " - Rta back error",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "d2af0c22-d3bc-4f6f-aad0-58aa589a58fc"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "text/xml"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}
